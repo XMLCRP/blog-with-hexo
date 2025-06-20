@@ -6,7 +6,7 @@
   <link href="https://xmlcrp.github.io/atom.xml" rel="self"/>
   
   <link href="https://xmlcrp.github.io/"/>
-  <updated>2025-06-20T05:21:54.966Z</updated>
+  <updated>2025-06-20T07:18:19.921Z</updated>
   <id>https://xmlcrp.github.io/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://xmlcrp.github.io/2025/06/20/suzuki%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9/"/>
+    <id>https://xmlcrp.github.io/2025/06/20/suzuki%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9/</id>
+    <published>2025-06-20T06:53:37.496Z</published>
+    <updated>2025-06-20T07:18:19.921Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1-RefreshParamMeldList-函数-添加高度"><a href="#1-RefreshParamMeldList-函数-添加高度" class="headerlink" title="1.RefreshParamMeldList(); 函数 添加高度"></a>1.RefreshParamMeldList(); 函数 添加高度</h1><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">RefreshParamMeldList</span>(<span class="params"><span class="built_in">string</span> moldname</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            dgvMeldList.RowHeadersVisible = <span class="literal">false</span>;</span><br><span class="line">            dgvMeldList.Rows.Clear();</span><br><span class="line"></span><br><span class="line">            <span class="built_in">string</span> sql = <span class="string">$&quot;SELECT * FROM [dbo].[ParamcfgMeld] WHERE [MELD_MOLDNAME] = &#x27;<span class="subst">&#123;moldname&#125;</span>&#x27;&quot;</span>;</span><br><span class="line">            DataSet ds = SqlHelper.ExecuteDataset(CommandType.Text, sql);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; ds.Tables[<span class="number">0</span>].Rows.Count; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//添加型号</span></span><br><span class="line">                DataGridViewRow dr = <span class="keyword">new</span> DataGridViewRow();</span><br><span class="line">                DataGridViewTextBoxCell dcOrder = <span class="keyword">new</span> DataGridViewTextBoxCell();</span><br><span class="line">                DataGridViewTextBoxCell dcPosition = <span class="keyword">new</span> DataGridViewTextBoxCell();</span><br><span class="line">                DataGridViewTextBoxCell dcParamID = <span class="keyword">new</span> DataGridViewTextBoxCell();</span><br><span class="line">                DataGridViewTextBoxCell dcHigh = <span class="keyword">new</span> DataGridViewTextBoxCell();</span><br><span class="line">                dcOrder.Value = i + <span class="number">1</span>;</span><br><span class="line">                <span class="comment">//dcOrder.Value = ds.Tables[0].Rows[i][0].ToString();</span></span><br><span class="line">                dcPosition.Value = ds.Tables[<span class="number">0</span>].Rows[i][<span class="number">1</span>].ToString();</span><br><span class="line">                dcParamID.Value = ds.Tables[<span class="number">0</span>].Rows[i][<span class="number">2</span>].ToString();</span><br><span class="line">                dcHigh.Value = ds.Tables[<span class="number">0</span>].Rows[i][<span class="number">3</span>].ToString();</span><br><span class="line">                dr.Cells.Add(dcOrder);</span><br><span class="line">                dr.Cells.Add(dcPosition);</span><br><span class="line">                dr.Cells.Add(dcParamID);</span><br><span class="line">                dr.Cells.Add(dcHigh);</span><br><span class="line"></span><br><span class="line">                dgvMeldList.Rows.Add(dr);</span><br><span class="line">            &#125;</span><br><span class="line">            dgvMeldList.ClearSelection();</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;1-RefreshParamMeldList-函数-添加高度&quot;&gt;&lt;a href=&quot;#1-RefreshParamMeldList-函数-添加高度&quot; class=&quot;headerlink&quot; title=&quot;1.RefreshParamMeldList(); 函数 添加高</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>5G bumper 内部追溯介绍</title>
+    <link href="https://xmlcrp.github.io/2025/06/20/5G%20bumper%20%E5%86%85%E9%83%A8%E8%BF%BD%E6%BA%AF%E4%BB%8B%E7%BB%8D/"/>
+    <id>https://xmlcrp.github.io/2025/06/20/5G%20bumper%20%E5%86%85%E9%83%A8%E8%BF%BD%E6%BA%AF%E4%BB%8B%E7%BB%8D/</id>
+    <published>2025-06-20T04:00:00.000Z</published>
+    <updated>2025-06-20T10:43:59.136Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="5G-bumper-内部追溯介绍"><a href="#5G-bumper-内部追溯介绍" class="headerlink" title="5G bumper 内部追溯介绍"></a>5G bumper 内部追溯介绍</h1><h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h2><p>有的时候客户工厂没有mes系统或者mes系统不可靠，这时候需要我们提供一套简单的内部MES追溯系统。本文以5G-bumper站作为示例，介绍下内部追溯到主要功能。</p><p>本线体可分为13个工站，12个从站1个主站，主站为包装站。10站操作员负责上料，130站操作员负责包装，其余工站无人值守。<br><img src="/blog-with-hexo/2025-06-20-18-29-02.png"><br><img src="/blog-with-hexo/2025-06-20-18-29-11.png"></p><h2 id="1-开班点检"><a href="#1-开班点检" class="headerlink" title="1.开班点检"></a>1.开班点检</h2><p><img src="/blog-with-hexo/2025-06-20-18-15-35.png"></p><p>在开班点检模式下，操作员在主站下发型号 和 每一站需要点检的样件条码。下发成功后开始点检。从站会对条码进行判断，若非本站条码，直接跳站。<br>全部样件点检完成后，主站点击结果查询，获取点检结果，点检成功后允许进入自动模式生产。</p><h2 id="2-生产"><a href="#2-生产" class="headerlink" title="2.生产"></a>2.生产</h2><p><img src="/blog-with-hexo/2025-06-20-18-21-17.png"></p><p>生产模式下，操作员在主站下发型号，下发成功后首站开始放料。</p><h2 id="3-返工"><a href="#3-返工" class="headerlink" title="3.返工"></a>3.返工</h2><p><img src="/blog-with-hexo/2025-06-20-18-22-43.png"></p><p>返工模式下，操作员在主站下发型号，然后下发返工时需要工作的工站。不需要工作的工站直接跳站。</p><h2 id="4-查询记录"><a href="#4-查询记录" class="headerlink" title="4.查询记录"></a>4.查询记录</h2><p><img src="/blog-with-hexo/2025-06-20-18-26-08.png"></p><p>记录查询功能包含了不同编码的查询方式，以应对一个产品多个条码的情况。本线体内部mes包含了：外壳码查询以及PCBA码查询功能。除此之外增加了模糊查询以及一键到处excel的功能。</p><p><img src="/blog-with-hexo/2025-06-20-18-27-51.png"><br><img src="/blog-with-hexo/2025-06-20-18-27-57.png"><br>点击某站所在的行，即可看到该站生产数据的详细记录。</p><h2 id="5-追溯"><a href="#5-追溯" class="headerlink" title="5.追溯"></a>5.追溯</h2><p><img src="/blog-with-hexo/2025-06-20-18-36-56.png"><br><img src="/blog-with-hexo/2025-06-20-18-37-06.png"></p><p>本站的追溯采用了前站追溯到形式，本站将结果文件写到本地文件夹中，然后共享文件夹。后一站通过磁盘映射的方式将前站的结果文件夹映射到本地。通过条码找到指定的结果文件读取文件中的结果值，从而实现追溯。</p><h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6.总结"></a>6.总结</h2><p>本文所介绍的内部mes追溯功能虽然比不上工厂mes系统功能强大，但是麻雀虽小五脏俱全，基础功能均已具备，并且胜在稳定。不必考虑到工厂服务器是否故障，网口等硬件线路造成的通讯不稳定等情况，因此广受用户好评。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;5G-bumper-内部追溯介绍&quot;&gt;&lt;a href=&quot;#5G-bumper-内部追溯介绍&quot; class=&quot;headerlink&quot; title=&quot;5G bumper 内部追溯介绍&quot;&gt;&lt;/a&gt;5G bumper 内部追溯介绍&lt;/h1&gt;&lt;h2 id=&quot;0-前言&quot;&gt;&lt;a </summary>
+      
+    
+    
+    
+    <category term="上位机" scheme="https://xmlcrp.github.io/categories/%E4%B8%8A%E4%BD%8D%E6%9C%BA/"/>
+    
+    
+    <category term="MES" scheme="https://xmlcrp.github.io/tags/MES/"/>
+    
+    <category term="5G bumper" scheme="https://xmlcrp.github.io/tags/5G-bumper/"/>
+    
+  </entry>
   
   <entry>
     <title>SQL SERVER 丢失管理员权限解决办法</title>
