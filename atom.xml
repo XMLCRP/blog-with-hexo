@@ -37,6 +37,30 @@
   </entry>
   
   <entry>
+    <title>SQL SERVER 丢失管理员权限解决办法</title>
+    <link href="https://xmlcrp.github.io/2025/06/20/SQL%20SERVER%20%E4%B8%A2%E5%A4%B1%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
+    <id>https://xmlcrp.github.io/2025/06/20/SQL%20SERVER%20%E4%B8%A2%E5%A4%B1%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</id>
+    <published>2025-06-20T04:00:00.000Z</published>
+    <updated>2025-06-20T05:21:54.966Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h1><p>SQL SERVER在使用中如果碰到管理员账户丢失，且无法通过windows用户登陆时，可以使用微软留的两个后门添加管理员账号进去再登陆。本文讲解其中一种。</p><h1 id="1-关掉SQL-SERVER-相关的所有服务"><a href="#1-关掉SQL-SERVER-相关的所有服务" class="headerlink" title="1.关掉SQL SERVER 相关的所有服务"></a>1.关掉SQL SERVER 相关的所有服务</h1><p>进入”服务”，找到SQL相关的所有服务，全部关掉。并且关掉SSMS软件。</p><h1 id="2-重新以严格过滤的单用户模式启动"><a href="#2-重新以严格过滤的单用户模式启动" class="headerlink" title="2.重新以严格过滤的单用户模式启动"></a>2.重新以严格过滤的单用户模式启动</h1><p>以管理员身份打开CMD，输入下面的命令，无报错，看到滚动的数据库运行数据说明执行成功。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\Binn\sqlservr.exe&quot; -sMSSQLSERVER -m&quot;SQLCMD&quot; -T4022 -T3659</span><br></pre></td></tr></table></figure><h1 id="3-添加sysadmin权限账户"><a href="#3-添加sysadmin权限账户" class="headerlink" title="3.添加sysadmin权限账户"></a>3.添加sysadmin权限账户</h1><p>以管理员权限再打开一个CMD窗口，逐行输入下面的命令。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sqlcmd -S localhost -E</span><br><span class="line">GO</span><br><span class="line">IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = N&#x27;AUTOMOTIVE-WAN\uif71007&#x27;) CREATE LOGIN [AUTOMOTIVE-WAN\uif71007] FROM WINDOWS;</span><br><span class="line">ALTER SERVER ROLE sysadmin ADD MEMBER [AUTOMOTIVE-WAN\uif71007];</span><br><span class="line">GO</span><br><span class="line">EXIT</span><br></pre></td></tr></table></figure><h1 id="4-恢复现场"><a href="#4-恢复现场" class="headerlink" title="4.恢复现场"></a>4.恢复现场</h1><p>关掉第二个CMD窗口，回到第一个CMD窗口点击ctrl+c 退出sqlserver程序。<br>进入”服务”，打开之前关闭的SQL相关服务。<br>打开SSMS软件，使用”windows身份验证”即可登陆。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;0-前言&quot;&gt;&lt;a href=&quot;#0-前言&quot; class=&quot;headerlink&quot; title=&quot;0.前言&quot;&gt;&lt;/a&gt;0.前言&lt;/h1&gt;&lt;p&gt;SQL SERVER在使用中如果碰到管理员账户丢失，且无法通过windows用户登陆时，可以使用微软留的两个后门添加管理员账</summary>
+      
+    
+    
+    
+    <category term="上位机" scheme="https://xmlcrp.github.io/categories/%E4%B8%8A%E4%BD%8D%E6%9C%BA/"/>
+    
+    
+    <category term="SQL SERVER" scheme="https://xmlcrp.github.io/tags/SQL-SERVER/"/>
+    
+  </entry>
+  
+  <entry>
     <title>5G bumper 内部追溯介绍</title>
     <link href="https://xmlcrp.github.io/2025/06/20/5G%20bumper%20%E5%86%85%E9%83%A8%E8%BF%BD%E6%BA%AF%E4%BB%8B%E7%BB%8D/"/>
     <id>https://xmlcrp.github.io/2025/06/20/5G%20bumper%20%E5%86%85%E9%83%A8%E8%BF%BD%E6%BA%AF%E4%BB%8B%E7%BB%8D/</id>
@@ -59,30 +83,6 @@
     <category term="MES" scheme="https://xmlcrp.github.io/tags/MES/"/>
     
     <category term="5G bumper" scheme="https://xmlcrp.github.io/tags/5G-bumper/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SQL SERVER 丢失管理员权限解决办法</title>
-    <link href="https://xmlcrp.github.io/2025/06/20/SQL%20SERVER%20%E4%B8%A2%E5%A4%B1%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
-    <id>https://xmlcrp.github.io/2025/06/20/SQL%20SERVER%20%E4%B8%A2%E5%A4%B1%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</id>
-    <published>2025-06-20T04:00:00.000Z</published>
-    <updated>2025-06-20T05:21:54.966Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h1><p>SQL SERVER在使用中如果碰到管理员账户丢失，且无法通过windows用户登陆时，可以使用微软留的两个后门添加管理员账号进去再登陆。本文讲解其中一种。</p><h1 id="1-关掉SQL-SERVER-相关的所有服务"><a href="#1-关掉SQL-SERVER-相关的所有服务" class="headerlink" title="1.关掉SQL SERVER 相关的所有服务"></a>1.关掉SQL SERVER 相关的所有服务</h1><p>进入”服务”，找到SQL相关的所有服务，全部关掉。并且关掉SSMS软件。</p><h1 id="2-重新以严格过滤的单用户模式启动"><a href="#2-重新以严格过滤的单用户模式启动" class="headerlink" title="2.重新以严格过滤的单用户模式启动"></a>2.重新以严格过滤的单用户模式启动</h1><p>以管理员身份打开CMD，输入下面的命令，无报错，看到滚动的数据库运行数据说明执行成功。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\Binn\sqlservr.exe&quot; -sMSSQLSERVER -m&quot;SQLCMD&quot; -T4022 -T3659</span><br></pre></td></tr></table></figure><h1 id="3-添加sysadmin权限账户"><a href="#3-添加sysadmin权限账户" class="headerlink" title="3.添加sysadmin权限账户"></a>3.添加sysadmin权限账户</h1><p>以管理员权限再打开一个CMD窗口，逐行输入下面的命令。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sqlcmd -S localhost -E</span><br><span class="line">GO</span><br><span class="line">IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = N&#x27;AUTOMOTIVE-WAN\uif71007&#x27;) CREATE LOGIN [AUTOMOTIVE-WAN\uif71007] FROM WINDOWS;</span><br><span class="line">ALTER SERVER ROLE sysadmin ADD MEMBER [AUTOMOTIVE-WAN\uif71007];</span><br><span class="line">GO</span><br><span class="line">EXIT</span><br></pre></td></tr></table></figure><h1 id="4-恢复现场"><a href="#4-恢复现场" class="headerlink" title="4.恢复现场"></a>4.恢复现场</h1><p>关掉第二个CMD窗口，回到第一个CMD窗口点击ctrl+c 退出sqlserver程序。<br>进入”服务”，打开之前关闭的SQL相关服务。<br>打开SSMS软件，使用”windows身份验证”即可登陆。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;0-前言&quot;&gt;&lt;a href=&quot;#0-前言&quot; class=&quot;headerlink&quot; title=&quot;0.前言&quot;&gt;&lt;/a&gt;0.前言&lt;/h1&gt;&lt;p&gt;SQL SERVER在使用中如果碰到管理员账户丢失，且无法通过windows用户登陆时，可以使用微软留的两个后门添加管理员账</summary>
-      
-    
-    
-    
-    <category term="上位机" scheme="https://xmlcrp.github.io/categories/%E4%B8%8A%E4%BD%8D%E6%9C%BA/"/>
-    
-    
-    <category term="SQL SERVER" scheme="https://xmlcrp.github.io/tags/SQL-SERVER/"/>
     
   </entry>
   
