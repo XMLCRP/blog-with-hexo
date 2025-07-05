@@ -6,7 +6,7 @@
   <link href="https://xmlcrp.github.io/atom.xml" rel="self"/>
   
   <link href="https://xmlcrp.github.io/"/>
-  <updated>2025-07-01T08:27:50.898Z</updated>
+  <updated>2025-07-05T03:31:37.727Z</updated>
   <id>https://xmlcrp.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>某汽车车载天线测试规范</title>
+    <link href="https://xmlcrp.github.io/2025/07/05/%E8%BD%A6%E8%BD%BD%E5%A4%A9%E7%BA%BF%E6%B5%8B%E8%AF%95/"/>
+    <id>https://xmlcrp.github.io/2025/07/05/%E8%BD%A6%E8%BD%BD%E5%A4%A9%E7%BA%BF%E6%B5%8B%E8%AF%95/</id>
+    <published>2025-07-05T04:00:00.000Z</published>
+    <updated>2025-07-05T03:31:37.727Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1-某汽车车载天线测试规范"><a href="#1-某汽车车载天线测试规范" class="headerlink" title="1. 某汽车车载天线测试规范"></a>1. 某汽车车载天线测试规范</h1><p>🔹 1）Return loss (S11) measurement on each Fakra connector<br>要在每个 Fakra 接头上做 回波损耗（S11）测量。</p><p>【Fakra】是车载天线或 RF 模块里常用的射频同轴接口标准。</p><p>【S11】是指反射系数&#x2F;回波损耗，用来判断匹配好不好，VSWR 等效。</p><p>图上黄箭头表示：两个端口都要单独测 S11。</p><p>🔹 2）Transmission (S21) between left and right antenna<br>要在左天线和右天线之间测 传输损耗（S21）。</p><p>【S21】是指端口 1 输入信号在端口 2 的输出传输特性，用来看链路增益&#x2F;损耗&#x2F;隔离度。</p><p>图上黄箭头表示：信号从一个 Fakra 口走到另一个 Fakra 口，要量互通情况。</p><p>🔹 3）Diagnosis resistor measurement is expected in both Fakras<br>要求在两个 Fakra 口都要测到 诊断电阻（可能是内部匹配或负载电阻，用来检测天线健康状态）。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;1-某汽车车载天线测试规范&quot;&gt;&lt;a href=&quot;#1-某汽车车载天线测试规范&quot; class=&quot;headerlink&quot; title=&quot;1. 某汽车车载天线测试规范&quot;&gt;&lt;/a&gt;1. 某汽车车载天线测试规范&lt;/h1&gt;&lt;p&gt;🔹 1）Return loss (S11) m</summary>
+      
+    
+    
+    
+    <category term="上位机" scheme="https://xmlcrp.github.io/categories/%E4%B8%8A%E4%BD%8D%E6%9C%BA/"/>
+    
+    
+    <category term="车载天线测试" scheme="https://xmlcrp.github.io/tags/%E8%BD%A6%E8%BD%BD%E5%A4%A9%E7%BA%BF%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>三轴自动搬运加工机械手项目实战开发-day4.登录窗体实现</title>
@@ -120,30 +144,6 @@
   </entry>
   
   <entry>
-    <title>某汽车车载天线测试规范</title>
-    <link href="https://xmlcrp.github.io/2025/06/28/%E8%BD%A6%E8%BD%BD%E5%A4%A9%E7%BA%BF%E6%B5%8B%E8%AF%95/"/>
-    <id>https://xmlcrp.github.io/2025/06/28/%E8%BD%A6%E8%BD%BD%E5%A4%A9%E7%BA%BF%E6%B5%8B%E8%AF%95/</id>
-    <published>2025-06-28T04:00:00.000Z</published>
-    <updated>2025-07-05T01:57:31.585Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="1-某汽车车载天线测试规范"><a href="#1-某汽车车载天线测试规范" class="headerlink" title="1. 某汽车车载天线测试规范"></a>1. 某汽车车载天线测试规范</h1><p>🔹 1）Return loss (S11) measurement on each Fakra connector<br>要在每个 Fakra 接头上做 回波损耗（S11）测量。</p><p>【Fakra】是车载天线或 RF 模块里常用的射频同轴接口标准。</p><p>【S11】是指反射系数&#x2F;回波损耗，用来判断匹配好不好，VSWR 等效。</p><p>图上黄箭头表示：两个端口都要单独测 S11。</p><p>🔹 2）Transmission (S21) between left and right antenna<br>要在左天线和右天线之间测 传输损耗（S21）。</p><p>【S21】是指端口 1 输入信号在端口 2 的输出传输特性，用来看链路增益&#x2F;损耗&#x2F;隔离度。</p><p>图上黄箭头表示：信号从一个 Fakra 口走到另一个 Fakra 口，要量互通情况。</p><p>🔹 3）Diagnosis resistor measurement is expected in both Fakras<br>要求在两个 Fakra 口都要测到 诊断电阻（可能是内部匹配或负载电阻，用来检测天线健康状态）。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;1-某汽车车载天线测试规范&quot;&gt;&lt;a href=&quot;#1-某汽车车载天线测试规范&quot; class=&quot;headerlink&quot; title=&quot;1. 某汽车车载天线测试规范&quot;&gt;&lt;/a&gt;1. 某汽车车载天线测试规范&lt;/h1&gt;&lt;p&gt;🔹 1）Return loss (S11) m</summary>
-      
-    
-    
-    
-    <category term="上位机" scheme="https://xmlcrp.github.io/categories/%E4%B8%8A%E4%BD%8D%E6%9C%BA/"/>
-    
-    
-    <category term="车载天线测试" scheme="https://xmlcrp.github.io/tags/%E8%BD%A6%E8%BD%BD%E5%A4%A9%E7%BA%BF%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
     <title>vs2022激活码</title>
     <link href="https://xmlcrp.github.io/2025/06/26/vs2022%E6%BF%80%E6%B4%BB%E7%A0%81/"/>
     <id>https://xmlcrp.github.io/2025/06/26/vs2022%E6%BF%80%E6%B4%BB%E7%A0%81/</id>
@@ -188,30 +188,6 @@
   </entry>
   
   <entry>
-    <title>SQL SERVER 丢失管理员权限解决办法</title>
-    <link href="https://xmlcrp.github.io/2025/06/20/SQL%20SERVER%20%E4%B8%A2%E5%A4%B1%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
-    <id>https://xmlcrp.github.io/2025/06/20/SQL%20SERVER%20%E4%B8%A2%E5%A4%B1%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</id>
-    <published>2025-06-20T04:00:00.000Z</published>
-    <updated>2025-06-20T05:21:54.966Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h1><p>SQL SERVER在使用中如果碰到管理员账户丢失，且无法通过windows用户登陆时，可以使用微软留的两个后门添加管理员账号进去再登陆。本文讲解其中一种。</p><h1 id="1-关掉SQL-SERVER-相关的所有服务"><a href="#1-关掉SQL-SERVER-相关的所有服务" class="headerlink" title="1.关掉SQL SERVER 相关的所有服务"></a>1.关掉SQL SERVER 相关的所有服务</h1><p>进入”服务”，找到SQL相关的所有服务，全部关掉。并且关掉SSMS软件。</p><h1 id="2-重新以严格过滤的单用户模式启动"><a href="#2-重新以严格过滤的单用户模式启动" class="headerlink" title="2.重新以严格过滤的单用户模式启动"></a>2.重新以严格过滤的单用户模式启动</h1><p>以管理员身份打开CMD，输入下面的命令，无报错，看到滚动的数据库运行数据说明执行成功。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\Binn\sqlservr.exe&quot; -sMSSQLSERVER -m&quot;SQLCMD&quot; -T4022 -T3659</span><br></pre></td></tr></table></figure><h1 id="3-添加sysadmin权限账户"><a href="#3-添加sysadmin权限账户" class="headerlink" title="3.添加sysadmin权限账户"></a>3.添加sysadmin权限账户</h1><p>以管理员权限再打开一个CMD窗口，逐行输入下面的命令。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sqlcmd -S localhost -E</span><br><span class="line">GO</span><br><span class="line">IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = N&#x27;AUTOMOTIVE-WAN\uif71007&#x27;) CREATE LOGIN [AUTOMOTIVE-WAN\uif71007] FROM WINDOWS;</span><br><span class="line">ALTER SERVER ROLE sysadmin ADD MEMBER [AUTOMOTIVE-WAN\uif71007];</span><br><span class="line">GO</span><br><span class="line">EXIT</span><br></pre></td></tr></table></figure><h1 id="4-恢复现场"><a href="#4-恢复现场" class="headerlink" title="4.恢复现场"></a>4.恢复现场</h1><p>关掉第二个CMD窗口，回到第一个CMD窗口点击ctrl+c 退出sqlserver程序。<br>进入”服务”，打开之前关闭的SQL相关服务。<br>打开SSMS软件，使用”windows身份验证”即可登陆。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;0-前言&quot;&gt;&lt;a href=&quot;#0-前言&quot; class=&quot;headerlink&quot; title=&quot;0.前言&quot;&gt;&lt;/a&gt;0.前言&lt;/h1&gt;&lt;p&gt;SQL SERVER在使用中如果碰到管理员账户丢失，且无法通过windows用户登陆时，可以使用微软留的两个后门添加管理员账</summary>
-      
-    
-    
-    
-    <category term="上位机" scheme="https://xmlcrp.github.io/categories/%E4%B8%8A%E4%BD%8D%E6%9C%BA/"/>
-    
-    
-    <category term="SQL SERVER" scheme="https://xmlcrp.github.io/tags/SQL-SERVER/"/>
-    
-  </entry>
-  
-  <entry>
     <title>5G bumper 内部追溯介绍</title>
     <link href="https://xmlcrp.github.io/2025/06/20/5G%20bumper%20%E5%86%85%E9%83%A8%E8%BF%BD%E6%BA%AF%E4%BB%8B%E7%BB%8D/"/>
     <id>https://xmlcrp.github.io/2025/06/20/5G%20bumper%20%E5%86%85%E9%83%A8%E8%BF%BD%E6%BA%AF%E4%BB%8B%E7%BB%8D/</id>
@@ -234,6 +210,30 @@
     <category term="MES" scheme="https://xmlcrp.github.io/tags/MES/"/>
     
     <category term="5G bumper" scheme="https://xmlcrp.github.io/tags/5G-bumper/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SQL SERVER 丢失管理员权限解决办法</title>
+    <link href="https://xmlcrp.github.io/2025/06/20/SQL%20SERVER%20%E4%B8%A2%E5%A4%B1%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
+    <id>https://xmlcrp.github.io/2025/06/20/SQL%20SERVER%20%E4%B8%A2%E5%A4%B1%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</id>
+    <published>2025-06-20T04:00:00.000Z</published>
+    <updated>2025-06-20T05:21:54.966Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h1><p>SQL SERVER在使用中如果碰到管理员账户丢失，且无法通过windows用户登陆时，可以使用微软留的两个后门添加管理员账号进去再登陆。本文讲解其中一种。</p><h1 id="1-关掉SQL-SERVER-相关的所有服务"><a href="#1-关掉SQL-SERVER-相关的所有服务" class="headerlink" title="1.关掉SQL SERVER 相关的所有服务"></a>1.关掉SQL SERVER 相关的所有服务</h1><p>进入”服务”，找到SQL相关的所有服务，全部关掉。并且关掉SSMS软件。</p><h1 id="2-重新以严格过滤的单用户模式启动"><a href="#2-重新以严格过滤的单用户模式启动" class="headerlink" title="2.重新以严格过滤的单用户模式启动"></a>2.重新以严格过滤的单用户模式启动</h1><p>以管理员身份打开CMD，输入下面的命令，无报错，看到滚动的数据库运行数据说明执行成功。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\Binn\sqlservr.exe&quot; -sMSSQLSERVER -m&quot;SQLCMD&quot; -T4022 -T3659</span><br></pre></td></tr></table></figure><h1 id="3-添加sysadmin权限账户"><a href="#3-添加sysadmin权限账户" class="headerlink" title="3.添加sysadmin权限账户"></a>3.添加sysadmin权限账户</h1><p>以管理员权限再打开一个CMD窗口，逐行输入下面的命令。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sqlcmd -S localhost -E</span><br><span class="line">GO</span><br><span class="line">IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = N&#x27;AUTOMOTIVE-WAN\uif71007&#x27;) CREATE LOGIN [AUTOMOTIVE-WAN\uif71007] FROM WINDOWS;</span><br><span class="line">ALTER SERVER ROLE sysadmin ADD MEMBER [AUTOMOTIVE-WAN\uif71007];</span><br><span class="line">GO</span><br><span class="line">EXIT</span><br></pre></td></tr></table></figure><h1 id="4-恢复现场"><a href="#4-恢复现场" class="headerlink" title="4.恢复现场"></a>4.恢复现场</h1><p>关掉第二个CMD窗口，回到第一个CMD窗口点击ctrl+c 退出sqlserver程序。<br>进入”服务”，打开之前关闭的SQL相关服务。<br>打开SSMS软件，使用”windows身份验证”即可登陆。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;0-前言&quot;&gt;&lt;a href=&quot;#0-前言&quot; class=&quot;headerlink&quot; title=&quot;0.前言&quot;&gt;&lt;/a&gt;0.前言&lt;/h1&gt;&lt;p&gt;SQL SERVER在使用中如果碰到管理员账户丢失，且无法通过windows用户登陆时，可以使用微软留的两个后门添加管理员账</summary>
+      
+    
+    
+    
+    <category term="上位机" scheme="https://xmlcrp.github.io/categories/%E4%B8%8A%E4%BD%8D%E6%9C%BA/"/>
+    
+    
+    <category term="SQL SERVER" scheme="https://xmlcrp.github.io/tags/SQL-SERVER/"/>
     
   </entry>
   
