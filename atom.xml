@@ -6,7 +6,7 @@
   <link href="https://xmlcrp.github.io/atom.xml" rel="self"/>
   
   <link href="https://xmlcrp.github.io/"/>
-  <updated>2025-07-05T05:26:20.919Z</updated>
+  <updated>2025-07-08T05:51:33.904Z</updated>
   <id>https://xmlcrp.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>三轴自动搬运加工机械手项目实战开发-day5.导航窗体实现</title>
+    <link href="https://xmlcrp.github.io/2025/07/08/[%E8%BF%90%E5%8A%A8%E6%8E%A7%E5%88%B6]day5%E5%AF%BC%E8%88%AA%E7%AA%97%E4%BD%93%E8%AE%BE%E8%AE%A1/"/>
+    <id>https://xmlcrp.github.io/2025/07/08/[%E8%BF%90%E5%8A%A8%E6%8E%A7%E5%88%B6]day5%E5%AF%BC%E8%88%AA%E7%AA%97%E4%BD%93%E8%AE%BE%E8%AE%A1/</id>
+    <published>2025-07-08T05:00:00.000Z</published>
+    <updated>2025-07-08T05:51:33.904Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1-创建一个登录窗体"><a href="#1-创建一个登录窗体" class="headerlink" title="1. 创建一个登录窗体"></a>1. 创建一个登录窗体</h1><ol><li>修改Font字体和大小，该属性会影响到窗体内所有的控件的默认值</li><li>修改FormBorderStyle&#x3D;None，该值会影响到边框，最大化最小化和删除按钮。</li><li>设置登录窗体继承的父类为DockContent <code>public partial class FrmNavi:DockContent</code></li></ol><h1 id="2-添加导航按钮"><a href="#2-添加导航按钮" class="headerlink" title="2. 添加导航按钮"></a>2. 添加导航按钮</h1><ol><li>添加一个button控件，给该控件添加一个image</li><li>设置image Align&#x3D;TopCenter，顶部对齐</li><li>设置Text Align&#x3D;BottomCenter，底部对齐</li><li>设置FlatStyle&#x3D;flat，无特殊渲染。</li><li>设置FlatApperance选项，展开里面有个BorderSize&#x3D;0，边框设置为0。<table><thead><tr><th>枚举值</th><th>含义</th><th>效果</th></tr></thead><tbody><tr><td>Standard</td><td>使用系统默认渲染样式</td><td>Windows 主题按钮风格（带阴影、边框）</td></tr><tr><td>System</td><td>委托给操作系统绘制</td><td>完全由操作系统绘制，跟 Standard 很像，但优先使用 OS 当前主题</td></tr><tr><td>Flat</td><td>扁平化</td><td>没有立体边框，纯色填充，看起来像老版 Windows 的扁平按钮</td></tr><tr><td>Popup</td><td>弹出式</td><td>平时扁平，鼠标悬停时出现 3D 边框</td></tr></tbody></table></li><li>设置closebuttonvisible属性&#x3D;false,取消显示关闭按钮，防止用户误操作。</li><li>设置showhint属性&#x3D;DockLeft停靠到左侧，如果是希望显示在下方就选择DockButton</li></ol><h1 id="3-添加第三方控件"><a href="#3-添加第三方控件" class="headerlink" title="3. 添加第三方控件"></a>3. 添加第三方控件</h1><p>添加第三方控件首先要引用dll，这里不赘述。<br>引用完dll并不会直接出现在工具箱中，需要手动添加，添加方式有两种：</p><ol><li>点击”工具”-&gt;”选择工具箱项”-&gt;”浏览”-&gt;选择我们要添加的dll.</li><li>直接将dll拖到左侧工具箱中。</li></ol><h1 id="4-在主窗体里打开导航窗体"><a href="#4-在主窗体里打开导航窗体" class="headerlink" title="4. 在主窗体里打开导航窗体"></a>4. 在主窗体里打开导航窗体</h1><p>主窗体和导航窗体是两个独立的.cs窗体项目，<strong>注意：两个窗体的字体和字号大小必须保持一致，不然会出现界面显示不正确的问题</strong></p><p>主窗体里面需要先添加一个Dockpannel控件命名为DockMain，这个控件是WeifenLuo.WinFormsUI.Docking.dll里面的新增控件。</p><ol><li>设置FrmMain的IsMdiContainer属性为true，如果不设置的话会报错。</li><li>设置DockMain的Dock属性为Fill，让它占据满主窗体。</li><li>主窗体Main函数中添加代码<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">FrmMain</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    InitializeComponent();</span><br><span class="line">    <span class="keyword">this</span>.Load += FrmMain_Load;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">FrmMain_Load</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    FrmNavi frmNavi = <span class="keyword">new</span> FrmNavi();</span><br><span class="line">    frmNavi.Show(DockMain);</span><br><span class="line">    <span class="comment">//设置DockPanel宽度</span></span><br><span class="line">    frmNavi.DockPanel.DockLeftPortion = <span class="number">110</span>;</span><br><span class="line">    <span class="comment">//设置隐藏时的宽度比，确保隐藏/显示比例正确.</span></span><br><span class="line">    <span class="comment">// 计算方式：110/1280，导航栏宽度除以DockPanel的宽度</span></span><br><span class="line">    frmNavi.AutoHidePortion = <span class="number">0.086</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol><h1 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h1><table><thead><tr><th>知识点</th><th>核心内容</th><th>重点&#x2F;易混淆点</th></tr></thead><tbody><tr><td>导航栏窗体创建</td><td>创建独立窗体 Navigation FM，设置字体（黑体 10.5）、无边框 (FormBorderStyle&#x3D;None)、固定大小 (120×650) 及图标</td><td>窗体属性设置顺序与继承关系（需成为 DockContent 而非普通 Form）</td></tr><tr><td>导航按钮设计</td><td>通过 Button 控件实现：- 图片对齐 (ImageAlign&#x3D;Top)；- 文字对齐 (TextAlign&#x3D;Bottom)；- 扁平化样式 (FlatStyle&#x3D;Flat)；- 去边框 (FlatAppearance.BorderSize&#x3D;0)</td><td>按钮样式统一性与动态图标匹配（如集中监控 → monitor 图标）</td></tr><tr><td>窗体嵌入主界面</td><td>代码逻辑：- 主窗体 Load 事件调用 Show() 方法；- 传递 DockPanel 参数实现停靠；- 设置 Dock&#x3D;Left 和 AutoHidePortion 比例 (110&#x2F;1280≈0.086)</td><td>关键点：Dock 和 AutoHidePortion 像素值与自动隐藏比例计算</td></tr><tr><td>交互功能预留</td><td>通过 <strong>委托</strong> 实现按钮点击切换右侧侧面板内容（下节课讲解）</td><td>委托机制与事件绑定的实现差异</td></tr></tbody></table>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;1-创建一个登录窗体&quot;&gt;&lt;a href=&quot;#1-创建一个登录窗体&quot; class=&quot;headerlink&quot; title=&quot;1. 创建一个登录窗体&quot;&gt;&lt;/a&gt;1. 创建一个登录窗体&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;修改Font字体和大小，该属性会影响到窗体内所有的控件的默认</summary>
+      
+    
+    
+    
+    <category term="上位机" scheme="https://xmlcrp.github.io/categories/%E4%B8%8A%E4%BD%8D%E6%9C%BA/"/>
+    
+    
+    <category term="运动控制" scheme="https://xmlcrp.github.io/tags/%E8%BF%90%E5%8A%A8%E6%8E%A7%E5%88%B6/"/>
+    
+    <category term="窗体美化" scheme="https://xmlcrp.github.io/tags/%E7%AA%97%E4%BD%93%E7%BE%8E%E5%8C%96/"/>
+    
+  </entry>
   
   <entry>
     <title>某汽车车载天线测试规范</title>
@@ -37,33 +64,6 @@
     
     
     <category term="车载天线测试" scheme="https://xmlcrp.github.io/tags/%E8%BD%A6%E8%BD%BD%E5%A4%A9%E7%BA%BF%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>三轴自动搬运加工机械手项目实战开发-day5.导航窗体实现</title>
-    <link href="https://xmlcrp.github.io/2025/07/01/[%E8%BF%90%E5%8A%A8%E6%8E%A7%E5%88%B6]day5%E5%AF%BC%E8%88%AA%E7%AA%97%E4%BD%93%E8%AE%BE%E8%AE%A1/"/>
-    <id>https://xmlcrp.github.io/2025/07/01/[%E8%BF%90%E5%8A%A8%E6%8E%A7%E5%88%B6]day5%E5%AF%BC%E8%88%AA%E7%AA%97%E4%BD%93%E8%AE%BE%E8%AE%A1/</id>
-    <published>2025-07-01T07:00:00.000Z</published>
-    <updated>2025-07-08T05:45:07.404Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="1-创建一个登录窗体"><a href="#1-创建一个登录窗体" class="headerlink" title="1. 创建一个登录窗体"></a>1. 创建一个登录窗体</h1><ol><li>修改Font字体和大小，该属性会影响到窗体内所有的控件的默认值</li><li>修改FormBorderStyle&#x3D;None，该值会影响到边框，最大化最小化和删除按钮。</li><li>设置登录窗体继承的父类为DockContent <code>public partial class FrmNavi:DockContent</code></li></ol><h1 id="2-添加导航按钮"><a href="#2-添加导航按钮" class="headerlink" title="2. 添加导航按钮"></a>2. 添加导航按钮</h1><ol><li>添加一个button控件，给该控件添加一个image</li><li>设置image Align&#x3D;TopCenter，顶部对齐</li><li>设置Text Align&#x3D;BottomCenter，底部对齐</li><li>设置FlatStyle&#x3D;flat，无特殊渲染。</li><li>设置FlatApperance选项，展开里面有个BorderSize&#x3D;0，边框设置为0。<table><thead><tr><th>枚举值</th><th>含义</th><th>效果</th></tr></thead><tbody><tr><td>Standard</td><td>使用系统默认渲染样式</td><td>Windows 主题按钮风格（带阴影、边框）</td></tr><tr><td>System</td><td>委托给操作系统绘制</td><td>完全由操作系统绘制，跟 Standard 很像，但优先使用 OS 当前主题</td></tr><tr><td>Flat</td><td>扁平化</td><td>没有立体边框，纯色填充，看起来像老版 Windows 的扁平按钮</td></tr><tr><td>Popup</td><td>弹出式</td><td>平时扁平，鼠标悬停时出现 3D 边框</td></tr></tbody></table></li><li>设置closebuttonvisible属性&#x3D;false,取消显示关闭按钮，防止用户误操作。</li><li>设置showhint属性&#x3D;DockLeft停靠到左侧，如果是希望显示在下方就选择DockButton</li></ol><h1 id="3-添加第三方控件"><a href="#3-添加第三方控件" class="headerlink" title="3. 添加第三方控件"></a>3. 添加第三方控件</h1><p>添加第三方控件首先要引用dll，这里不赘述。<br>引用完dll并不会直接出现在工具箱中，需要手动添加，添加方式有两种：</p><ol><li>点击”工具”-&gt;”选择工具箱项”-&gt;”浏览”-&gt;选择我们要添加的dll.</li><li>直接将dll拖到左侧工具箱中。</li></ol><h1 id="4-在主窗体里打开导航窗体"><a href="#4-在主窗体里打开导航窗体" class="headerlink" title="4. 在主窗体里打开导航窗体"></a>4. 在主窗体里打开导航窗体</h1><p>主窗体和导航窗体是两个独立的.cs窗体项目，<strong>注意：两个窗体的字体和字号大小必须保持一致，不然会出现界面显示不正确的问题</strong></p><p>主窗体里面需要先添加一个Dockpannel控件命名为DockMain，这个控件是WeifenLuo.WinFormsUI.Docking.dll里面的新增控件。</p><ol><li>设置FrmMain的IsMdiContainer属性为true，如果不设置的话会报错。</li><li>设置DockMain的Dock属性为Fill，让它占据满主窗体。</li><li>主窗体Main函数中添加代码<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">FrmMain</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    InitializeComponent();</span><br><span class="line">    <span class="keyword">this</span>.Load += FrmMain_Load;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">FrmMain_Load</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    FrmNavi frmNavi = <span class="keyword">new</span> FrmNavi();</span><br><span class="line">    frmNavi.Show(DockMain);</span><br><span class="line">    <span class="comment">//设置DockPanel宽度</span></span><br><span class="line">    frmNavi.DockPanel.DockLeftPortion = <span class="number">110</span>;</span><br><span class="line">    <span class="comment">//设置隐藏时的宽度比，确保隐藏/显示比例正确.</span></span><br><span class="line">    <span class="comment">// 计算方式：110/1280，导航栏宽度除以DockPanel的宽度</span></span><br><span class="line">    frmNavi.AutoHidePortion = <span class="number">0.086</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol><h1 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h1><table><thead><tr><th>知识点</th><th>核心内容</th><th>考试重点&#x2F;易混淆点</th></tr></thead><tbody><tr><td>导航栏窗体创建</td><td>创建独立窗体 Navigation FM，设置字体（黑体 10.5）、无边框 (FormBorderStyle&#x3D;None)、固定大小 (120×650) 及图标</td><td>窗体属性设置顺序与继承关系（需成为 DockContent 而非普通 Form）</td></tr><tr><td>导航按钮设计</td><td>通过 Button 控件实现：- 图片对齐 (ImageAlign&#x3D;Top)；- 文字对齐 (TextAlign&#x3D;Bottom)；- 扁平化样式 (FlatStyle&#x3D;Flat)；- 去边框 (FlatAppearance.BorderSize&#x3D;0)</td><td>按钮样式统一性与动态图标匹配（如集中监控 → monitor 图标）</td></tr><tr><td>窗体嵌入主界面</td><td>代码逻辑：- 主窗体 Load 事件调用 Show() 方法；- 传递 DockPanel 参数实现停靠；- 设置 Dock&#x3D;Left 和 AutoHidePortion 比例 (110&#x2F;1280≈0.086)</td><td>关键点：Dock 和 AutoHidePortion 像素值与自动隐藏比例计算</td></tr><tr><td>交互功能预留</td><td>通过 <strong>委托</strong> 实现按钮点击切换右侧侧面板内容（下节课讲解）</td><td>委托机制与事件绑定的实现差异</td></tr></tbody></table>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;1-创建一个登录窗体&quot;&gt;&lt;a href=&quot;#1-创建一个登录窗体&quot; class=&quot;headerlink&quot; title=&quot;1. 创建一个登录窗体&quot;&gt;&lt;/a&gt;1. 创建一个登录窗体&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;修改Font字体和大小，该属性会影响到窗体内所有的控件的默认</summary>
-      
-    
-    
-    
-    <category term="上位机" scheme="https://xmlcrp.github.io/categories/%E4%B8%8A%E4%BD%8D%E6%9C%BA/"/>
-    
-    
-    <category term="运动控制" scheme="https://xmlcrp.github.io/tags/%E8%BF%90%E5%8A%A8%E6%8E%A7%E5%88%B6/"/>
-    
-    <category term="窗体美化" scheme="https://xmlcrp.github.io/tags/%E7%AA%97%E4%BD%93%E7%BE%8E%E5%8C%96/"/>
     
   </entry>
   
