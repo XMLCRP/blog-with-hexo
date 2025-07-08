@@ -6,7 +6,7 @@
   <link href="https://xmlcrp.github.io/atom.xml" rel="self"/>
   
   <link href="https://xmlcrp.github.io/"/>
-  <updated>2025-07-05T03:31:37.727Z</updated>
+  <updated>2025-07-05T05:26:20.919Z</updated>
   <id>https://xmlcrp.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://xmlcrp.github.io/2025/07/05/%E8%BD%A6%E8%BD%BD%E5%A4%A9%E7%BA%BF%E6%B5%8B%E8%AF%95/"/>
     <id>https://xmlcrp.github.io/2025/07/05/%E8%BD%A6%E8%BD%BD%E5%A4%A9%E7%BA%BF%E6%B5%8B%E8%AF%95/</id>
     <published>2025-07-05T04:00:00.000Z</published>
-    <updated>2025-07-05T03:31:37.727Z</updated>
+    <updated>2025-07-05T05:26:20.919Z</updated>
     
     <content type="html"><![CDATA[<h1 id="1-某汽车车载天线测试规范"><a href="#1-某汽车车载天线测试规范" class="headerlink" title="1. 某汽车车载天线测试规范"></a>1. 某汽车车载天线测试规范</h1><p>🔹 1）Return loss (S11) measurement on each Fakra connector<br>要在每个 Fakra 接头上做 回波损耗（S11）测量。</p><p>【Fakra】是车载天线或 RF 模块里常用的射频同轴接口标准。</p><p>【S11】是指反射系数&#x2F;回波损耗，用来判断匹配好不好，VSWR 等效。</p><p>图上黄箭头表示：两个端口都要单独测 S11。</p><p>🔹 2）Transmission (S21) between left and right antenna<br>要在左天线和右天线之间测 传输损耗（S21）。</p><p>【S21】是指端口 1 输入信号在端口 2 的输出传输特性，用来看链路增益&#x2F;损耗&#x2F;隔离度。</p><p>图上黄箭头表示：信号从一个 Fakra 口走到另一个 Fakra 口，要量互通情况。</p><p>🔹 3）Diagnosis resistor measurement is expected in both Fakras<br>要求在两个 Fakra 口都要测到 诊断电阻（可能是内部匹配或负载电阻，用来检测天线健康状态）。</p>]]></content>
     
@@ -37,6 +37,33 @@
     
     
     <category term="车载天线测试" scheme="https://xmlcrp.github.io/tags/%E8%BD%A6%E8%BD%BD%E5%A4%A9%E7%BA%BF%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>三轴自动搬运加工机械手项目实战开发-day5.导航窗体实现</title>
+    <link href="https://xmlcrp.github.io/2025/07/01/[%E8%BF%90%E5%8A%A8%E6%8E%A7%E5%88%B6]day5%E5%AF%BC%E8%88%AA%E7%AA%97%E4%BD%93%E8%AE%BE%E8%AE%A1/"/>
+    <id>https://xmlcrp.github.io/2025/07/01/[%E8%BF%90%E5%8A%A8%E6%8E%A7%E5%88%B6]day5%E5%AF%BC%E8%88%AA%E7%AA%97%E4%BD%93%E8%AE%BE%E8%AE%A1/</id>
+    <published>2025-07-01T07:00:00.000Z</published>
+    <updated>2025-07-08T05:45:07.404Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1-创建一个登录窗体"><a href="#1-创建一个登录窗体" class="headerlink" title="1. 创建一个登录窗体"></a>1. 创建一个登录窗体</h1><ol><li>修改Font字体和大小，该属性会影响到窗体内所有的控件的默认值</li><li>修改FormBorderStyle&#x3D;None，该值会影响到边框，最大化最小化和删除按钮。</li><li>设置登录窗体继承的父类为DockContent <code>public partial class FrmNavi:DockContent</code></li></ol><h1 id="2-添加导航按钮"><a href="#2-添加导航按钮" class="headerlink" title="2. 添加导航按钮"></a>2. 添加导航按钮</h1><ol><li>添加一个button控件，给该控件添加一个image</li><li>设置image Align&#x3D;TopCenter，顶部对齐</li><li>设置Text Align&#x3D;BottomCenter，底部对齐</li><li>设置FlatStyle&#x3D;flat，无特殊渲染。</li><li>设置FlatApperance选项，展开里面有个BorderSize&#x3D;0，边框设置为0。<table><thead><tr><th>枚举值</th><th>含义</th><th>效果</th></tr></thead><tbody><tr><td>Standard</td><td>使用系统默认渲染样式</td><td>Windows 主题按钮风格（带阴影、边框）</td></tr><tr><td>System</td><td>委托给操作系统绘制</td><td>完全由操作系统绘制，跟 Standard 很像，但优先使用 OS 当前主题</td></tr><tr><td>Flat</td><td>扁平化</td><td>没有立体边框，纯色填充，看起来像老版 Windows 的扁平按钮</td></tr><tr><td>Popup</td><td>弹出式</td><td>平时扁平，鼠标悬停时出现 3D 边框</td></tr></tbody></table></li><li>设置closebuttonvisible属性&#x3D;false,取消显示关闭按钮，防止用户误操作。</li><li>设置showhint属性&#x3D;DockLeft停靠到左侧，如果是希望显示在下方就选择DockButton</li></ol><h1 id="3-添加第三方控件"><a href="#3-添加第三方控件" class="headerlink" title="3. 添加第三方控件"></a>3. 添加第三方控件</h1><p>添加第三方控件首先要引用dll，这里不赘述。<br>引用完dll并不会直接出现在工具箱中，需要手动添加，添加方式有两种：</p><ol><li>点击”工具”-&gt;”选择工具箱项”-&gt;”浏览”-&gt;选择我们要添加的dll.</li><li>直接将dll拖到左侧工具箱中。</li></ol><h1 id="4-在主窗体里打开导航窗体"><a href="#4-在主窗体里打开导航窗体" class="headerlink" title="4. 在主窗体里打开导航窗体"></a>4. 在主窗体里打开导航窗体</h1><p>主窗体和导航窗体是两个独立的.cs窗体项目，<strong>注意：两个窗体的字体和字号大小必须保持一致，不然会出现界面显示不正确的问题</strong></p><p>主窗体里面需要先添加一个Dockpannel控件命名为DockMain，这个控件是WeifenLuo.WinFormsUI.Docking.dll里面的新增控件。</p><ol><li>设置FrmMain的IsMdiContainer属性为true，如果不设置的话会报错。</li><li>设置DockMain的Dock属性为Fill，让它占据满主窗体。</li><li>主窗体Main函数中添加代码<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">FrmMain</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    InitializeComponent();</span><br><span class="line">    <span class="keyword">this</span>.Load += FrmMain_Load;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">FrmMain_Load</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    FrmNavi frmNavi = <span class="keyword">new</span> FrmNavi();</span><br><span class="line">    frmNavi.Show(DockMain);</span><br><span class="line">    <span class="comment">//设置DockPanel宽度</span></span><br><span class="line">    frmNavi.DockPanel.DockLeftPortion = <span class="number">110</span>;</span><br><span class="line">    <span class="comment">//设置隐藏时的宽度比，确保隐藏/显示比例正确.</span></span><br><span class="line">    <span class="comment">// 计算方式：110/1280，导航栏宽度除以DockPanel的宽度</span></span><br><span class="line">    frmNavi.AutoHidePortion = <span class="number">0.086</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol><h1 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h1><table><thead><tr><th>知识点</th><th>核心内容</th><th>考试重点&#x2F;易混淆点</th></tr></thead><tbody><tr><td>导航栏窗体创建</td><td>创建独立窗体 Navigation FM，设置字体（黑体 10.5）、无边框 (FormBorderStyle&#x3D;None)、固定大小 (120×650) 及图标</td><td>窗体属性设置顺序与继承关系（需成为 DockContent 而非普通 Form）</td></tr><tr><td>导航按钮设计</td><td>通过 Button 控件实现：- 图片对齐 (ImageAlign&#x3D;Top)；- 文字对齐 (TextAlign&#x3D;Bottom)；- 扁平化样式 (FlatStyle&#x3D;Flat)；- 去边框 (FlatAppearance.BorderSize&#x3D;0)</td><td>按钮样式统一性与动态图标匹配（如集中监控 → monitor 图标）</td></tr><tr><td>窗体嵌入主界面</td><td>代码逻辑：- 主窗体 Load 事件调用 Show() 方法；- 传递 DockPanel 参数实现停靠；- 设置 Dock&#x3D;Left 和 AutoHidePortion 比例 (110&#x2F;1280≈0.086)</td><td>关键点：Dock 和 AutoHidePortion 像素值与自动隐藏比例计算</td></tr><tr><td>交互功能预留</td><td>通过 <strong>委托</strong> 实现按钮点击切换右侧侧面板内容（下节课讲解）</td><td>委托机制与事件绑定的实现差异</td></tr></tbody></table>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;1-创建一个登录窗体&quot;&gt;&lt;a href=&quot;#1-创建一个登录窗体&quot; class=&quot;headerlink&quot; title=&quot;1. 创建一个登录窗体&quot;&gt;&lt;/a&gt;1. 创建一个登录窗体&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;修改Font字体和大小，该属性会影响到窗体内所有的控件的默认</summary>
+      
+    
+    
+    
+    <category term="上位机" scheme="https://xmlcrp.github.io/categories/%E4%B8%8A%E4%BD%8D%E6%9C%BA/"/>
+    
+    
+    <category term="运动控制" scheme="https://xmlcrp.github.io/tags/%E8%BF%90%E5%8A%A8%E6%8E%A7%E5%88%B6/"/>
+    
+    <category term="窗体美化" scheme="https://xmlcrp.github.io/tags/%E7%AA%97%E4%BD%93%E7%BE%8E%E5%8C%96/"/>
     
   </entry>
   
@@ -172,18 +199,42 @@
     <link href="https://xmlcrp.github.io/2025/06/20/suzuki%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9/"/>
     <id>https://xmlcrp.github.io/2025/06/20/suzuki%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9/</id>
     <published>2025-06-20T06:53:37.496Z</published>
-    <updated>2025-06-20T07:18:19.921Z</updated>
+    <updated>2025-07-06T16:11:03.832Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="1-RefreshParamMeldList-函数-添加高度"><a href="#1-RefreshParamMeldList-函数-添加高度" class="headerlink" title="1.RefreshParamMeldList(); 函数 添加高度"></a>1.RefreshParamMeldList(); 函数 添加高度</h1><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">RefreshParamMeldList</span>(<span class="params"><span class="built_in">string</span> moldname</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            dgvMeldList.RowHeadersVisible = <span class="literal">false</span>;</span><br><span class="line">            dgvMeldList.Rows.Clear();</span><br><span class="line"></span><br><span class="line">            <span class="built_in">string</span> sql = <span class="string">$&quot;SELECT * FROM [dbo].[ParamcfgMeld] WHERE [MELD_MOLDNAME] = &#x27;<span class="subst">&#123;moldname&#125;</span>&#x27;&quot;</span>;</span><br><span class="line">            DataSet ds = SqlHelper.ExecuteDataset(CommandType.Text, sql);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; ds.Tables[<span class="number">0</span>].Rows.Count; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//添加型号</span></span><br><span class="line">                DataGridViewRow dr = <span class="keyword">new</span> DataGridViewRow();</span><br><span class="line">                DataGridViewTextBoxCell dcOrder = <span class="keyword">new</span> DataGridViewTextBoxCell();</span><br><span class="line">                DataGridViewTextBoxCell dcPosition = <span class="keyword">new</span> DataGridViewTextBoxCell();</span><br><span class="line">                DataGridViewTextBoxCell dcParamID = <span class="keyword">new</span> DataGridViewTextBoxCell();</span><br><span class="line">                DataGridViewTextBoxCell dcHigh = <span class="keyword">new</span> DataGridViewTextBoxCell();</span><br><span class="line">                dcOrder.Value = i + <span class="number">1</span>;</span><br><span class="line">                <span class="comment">//dcOrder.Value = ds.Tables[0].Rows[i][0].ToString();</span></span><br><span class="line">                dcPosition.Value = ds.Tables[<span class="number">0</span>].Rows[i][<span class="number">1</span>].ToString();</span><br><span class="line">                dcParamID.Value = ds.Tables[<span class="number">0</span>].Rows[i][<span class="number">2</span>].ToString();</span><br><span class="line">                dcHigh.Value = ds.Tables[<span class="number">0</span>].Rows[i][<span class="number">3</span>].ToString();</span><br><span class="line">                dr.Cells.Add(dcOrder);</span><br><span class="line">                dr.Cells.Add(dcPosition);</span><br><span class="line">                dr.Cells.Add(dcParamID);</span><br><span class="line">                dr.Cells.Add(dcHigh);</span><br><span class="line"></span><br><span class="line">                dgvMeldList.Rows.Add(dr);</span><br><span class="line">            &#125;</span><br><span class="line">            dgvMeldList.ClearSelection();</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>初创与技术积累阶段（2015-2017）<br>团队组建初期，主要聚焦于Windows平台的软件开发，专注于电脑硬件检测工具与系统优化脚本的开发。我作为主要技术负责人，主导开发了硬件检测应用，并深入研究Windows正向与逆向开发、软件加密解密、PE&#x2F;DLL注入及内核机制，为团队打下了坚实的技术基础。同时，团队也积极参与国内计算机硬件贸易，建立了第一个为客户提供专业技术服务的体系。</p><p>业务拓展与网络平台建设阶段（2017-2018）<br>随着业务的发展，团队扩展了网络销售渠道，搭建自主网站，为客户提供一站式的软件及网络下载服务。我牵头搭建个人博客，探索知识管理系统“第二大脑”，并自学HTML、CSS、Python等前端和网络开发技术，为团队线上业务和数字化转型打下了良好基础。</p><p>创新探索与区块链业务尝试阶段（2018-2019）<br>团队顺应技术潮流，尝试进入区块链和虚拟币领域。我参与虚拟货币矿场的建设和日常运维，同时支持网站的虚拟货币交易支付。期间深入学习比特币、以太坊等主流区块链技术，并积极对接全球IDC资源，探索硬件跨境贸易及服务器出海业务，推动团队的国际化探索。</p><p>嵌入式领域探索与云服务升级阶段（2019-2022）<br>随着云计算和虚拟化的普及，团队将业务重心转向服务器托管、分销、运维及海外云服务升级。我主导团队与全球40多个国家和地区的IDC建立合作，推动KVM与LXC虚拟化架构应用，自研一键部署脚本，大幅提升服务器管理效率。期间积累了丰富的Linux系统运维、shell脚本，国内与全球各地的路由优化能力。同时团队开展嵌入领域的探索，自研试验箱，与高校合作开展教培行业的工作。期间积累了嵌入式驱动开发及应用开发的技术能力。</p><p>智能化与AI升级阶段（2022-至今）<br>团队进一步聚焦工业自动化和智能制造，开展C#工控上位机开发，实现与PLC、MES等系统的对接，广泛服务于工厂自动化场景。同时，团队积极引入AI技术，探索ChatGPT、Gemini等前沿工具在本地的部署和业务融合。我持续提升团队AI应用能力，将自然语言接口集成到知识管理系统，推动技术与业务的深度融合，实现团队业务的智能化升级。</p><p>技术亮点与业绩：</p><p>熟悉ARM嵌入式系统开发与Linux驱动，熟悉C&#x2F;C++、UART,CAN等各类底层通信协议，可以从研发的角度更好的理解产品，在从事上位机测试开发工作的时候更好的与甲方研发人员对接。</p><p>熟悉虚拟化、云计算、网络编程及运维，在开展国际业务的时候可以快速搭建低延迟，低丢包率的网络通道，以便后续国内工程师的远程协助与维护。</p><p>具备软硬件网络协同开发能力，在种类驳杂，迭代迅速的自动化领域如鱼得水。</p><p>拥有丰富的跨界项目管理、团队合作、客户沟通及全球资源整合经验。</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;h1 id=&quot;1-RefreshParamMeldList-函数-添加高度&quot;&gt;&lt;a href=&quot;#1-RefreshParamMeldList-函数-添加高度&quot; class=&quot;headerlink&quot; title=&quot;1.RefreshParamMeldList(); 函数 添加高</summary>
+    <summary type="html">&lt;p&gt;初创与技术积累阶段（2015-2017）&lt;br&gt;团队组建初期，主要聚焦于Windows平台的软件开发，专注于电脑硬件检测工具与系统优化脚本的开发。我作为主要技术负责人，主导开发了硬件检测应用，并深入研究Windows正向与逆向开发、软件加密解密、PE&amp;#x2F;DLL注入及</summary>
       
     
     
     
+    
+  </entry>
+  
+  <entry>
+    <title>SQL SERVER 丢失管理员权限解决办法</title>
+    <link href="https://xmlcrp.github.io/2025/06/20/SQL%20SERVER%20%E4%B8%A2%E5%A4%B1%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
+    <id>https://xmlcrp.github.io/2025/06/20/SQL%20SERVER%20%E4%B8%A2%E5%A4%B1%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</id>
+    <published>2025-06-20T04:00:00.000Z</published>
+    <updated>2025-06-20T05:21:54.966Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h1><p>SQL SERVER在使用中如果碰到管理员账户丢失，且无法通过windows用户登陆时，可以使用微软留的两个后门添加管理员账号进去再登陆。本文讲解其中一种。</p><h1 id="1-关掉SQL-SERVER-相关的所有服务"><a href="#1-关掉SQL-SERVER-相关的所有服务" class="headerlink" title="1.关掉SQL SERVER 相关的所有服务"></a>1.关掉SQL SERVER 相关的所有服务</h1><p>进入”服务”，找到SQL相关的所有服务，全部关掉。并且关掉SSMS软件。</p><h1 id="2-重新以严格过滤的单用户模式启动"><a href="#2-重新以严格过滤的单用户模式启动" class="headerlink" title="2.重新以严格过滤的单用户模式启动"></a>2.重新以严格过滤的单用户模式启动</h1><p>以管理员身份打开CMD，输入下面的命令，无报错，看到滚动的数据库运行数据说明执行成功。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\Binn\sqlservr.exe&quot; -sMSSQLSERVER -m&quot;SQLCMD&quot; -T4022 -T3659</span><br></pre></td></tr></table></figure><h1 id="3-添加sysadmin权限账户"><a href="#3-添加sysadmin权限账户" class="headerlink" title="3.添加sysadmin权限账户"></a>3.添加sysadmin权限账户</h1><p>以管理员权限再打开一个CMD窗口，逐行输入下面的命令。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sqlcmd -S localhost -E</span><br><span class="line">GO</span><br><span class="line">IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = N&#x27;AUTOMOTIVE-WAN\uif71007&#x27;) CREATE LOGIN [AUTOMOTIVE-WAN\uif71007] FROM WINDOWS;</span><br><span class="line">ALTER SERVER ROLE sysadmin ADD MEMBER [AUTOMOTIVE-WAN\uif71007];</span><br><span class="line">GO</span><br><span class="line">EXIT</span><br></pre></td></tr></table></figure><h1 id="4-恢复现场"><a href="#4-恢复现场" class="headerlink" title="4.恢复现场"></a>4.恢复现场</h1><p>关掉第二个CMD窗口，回到第一个CMD窗口点击ctrl+c 退出sqlserver程序。<br>进入”服务”，打开之前关闭的SQL相关服务。<br>打开SSMS软件，使用”windows身份验证”即可登陆。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;0-前言&quot;&gt;&lt;a href=&quot;#0-前言&quot; class=&quot;headerlink&quot; title=&quot;0.前言&quot;&gt;&lt;/a&gt;0.前言&lt;/h1&gt;&lt;p&gt;SQL SERVER在使用中如果碰到管理员账户丢失，且无法通过windows用户登陆时，可以使用微软留的两个后门添加管理员账</summary>
+      
+    
+    
+    
+    <category term="上位机" scheme="https://xmlcrp.github.io/categories/%E4%B8%8A%E4%BD%8D%E6%9C%BA/"/>
+    
+    
+    <category term="SQL SERVER" scheme="https://xmlcrp.github.io/tags/SQL-SERVER/"/>
     
   </entry>
   
@@ -210,30 +261,6 @@
     <category term="MES" scheme="https://xmlcrp.github.io/tags/MES/"/>
     
     <category term="5G bumper" scheme="https://xmlcrp.github.io/tags/5G-bumper/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SQL SERVER 丢失管理员权限解决办法</title>
-    <link href="https://xmlcrp.github.io/2025/06/20/SQL%20SERVER%20%E4%B8%A2%E5%A4%B1%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
-    <id>https://xmlcrp.github.io/2025/06/20/SQL%20SERVER%20%E4%B8%A2%E5%A4%B1%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</id>
-    <published>2025-06-20T04:00:00.000Z</published>
-    <updated>2025-06-20T05:21:54.966Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h1><p>SQL SERVER在使用中如果碰到管理员账户丢失，且无法通过windows用户登陆时，可以使用微软留的两个后门添加管理员账号进去再登陆。本文讲解其中一种。</p><h1 id="1-关掉SQL-SERVER-相关的所有服务"><a href="#1-关掉SQL-SERVER-相关的所有服务" class="headerlink" title="1.关掉SQL SERVER 相关的所有服务"></a>1.关掉SQL SERVER 相关的所有服务</h1><p>进入”服务”，找到SQL相关的所有服务，全部关掉。并且关掉SSMS软件。</p><h1 id="2-重新以严格过滤的单用户模式启动"><a href="#2-重新以严格过滤的单用户模式启动" class="headerlink" title="2.重新以严格过滤的单用户模式启动"></a>2.重新以严格过滤的单用户模式启动</h1><p>以管理员身份打开CMD，输入下面的命令，无报错，看到滚动的数据库运行数据说明执行成功。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\Binn\sqlservr.exe&quot; -sMSSQLSERVER -m&quot;SQLCMD&quot; -T4022 -T3659</span><br></pre></td></tr></table></figure><h1 id="3-添加sysadmin权限账户"><a href="#3-添加sysadmin权限账户" class="headerlink" title="3.添加sysadmin权限账户"></a>3.添加sysadmin权限账户</h1><p>以管理员权限再打开一个CMD窗口，逐行输入下面的命令。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sqlcmd -S localhost -E</span><br><span class="line">GO</span><br><span class="line">IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = N&#x27;AUTOMOTIVE-WAN\uif71007&#x27;) CREATE LOGIN [AUTOMOTIVE-WAN\uif71007] FROM WINDOWS;</span><br><span class="line">ALTER SERVER ROLE sysadmin ADD MEMBER [AUTOMOTIVE-WAN\uif71007];</span><br><span class="line">GO</span><br><span class="line">EXIT</span><br></pre></td></tr></table></figure><h1 id="4-恢复现场"><a href="#4-恢复现场" class="headerlink" title="4.恢复现场"></a>4.恢复现场</h1><p>关掉第二个CMD窗口，回到第一个CMD窗口点击ctrl+c 退出sqlserver程序。<br>进入”服务”，打开之前关闭的SQL相关服务。<br>打开SSMS软件，使用”windows身份验证”即可登陆。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;0-前言&quot;&gt;&lt;a href=&quot;#0-前言&quot; class=&quot;headerlink&quot; title=&quot;0.前言&quot;&gt;&lt;/a&gt;0.前言&lt;/h1&gt;&lt;p&gt;SQL SERVER在使用中如果碰到管理员账户丢失，且无法通过windows用户登陆时，可以使用微软留的两个后门添加管理员账</summary>
-      
-    
-    
-    
-    <category term="上位机" scheme="https://xmlcrp.github.io/categories/%E4%B8%8A%E4%BD%8D%E6%9C%BA/"/>
-    
-    
-    <category term="SQL SERVER" scheme="https://xmlcrp.github.io/tags/SQL-SERVER/"/>
     
   </entry>
   
