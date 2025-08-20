@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>单例模式 | 我的技术博客</title><meta name="author" content="Jessee Mecry"><meta name="copyright" content="Jessee Mecry"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Day1 单例模式0.前言本章学习一下C#的常见的设计模式，用于提升代码的框架设计能力。 1.设计模式GoF 设计模式中包含了：创建型，结构型和行为型三种设计模式。GoF 设计模式是由四位计算机科学家提出的23种设计模式，因此被称为“四人帮”（Gang of Four，简称GoF）。 创建型包含了：单例模式（Singleton），简单工厂模式（Simple Factory），工厂方法模式（Fact">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单例模式">
+<meta property="og:url" content="https://xmlcrp.github.io/2025/08/18/[%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F]day1%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="我的技术博客">
+<meta property="og:description" content="Day1 单例模式0.前言本章学习一下C#的常见的设计模式，用于提升代码的框架设计能力。 1.设计模式GoF 设计模式中包含了：创建型，结构型和行为型三种设计模式。GoF 设计模式是由四位计算机科学家提出的23种设计模式，因此被称为“四人帮”（Gang of Four，简称GoF）。 创建型包含了：单例模式（Singleton），简单工厂模式（Simple Factory），工厂方法模式（Fact">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xmlcrp.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-08-18T02:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-20T12:34:14.852Z">
+<meta property="article:author" content="Jessee Mecry">
+<meta property="article:tag" content="设计模式">
+<meta property="article:tag" content="单例模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xmlcrp.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "单例模式",
+  "url": "https://xmlcrp.github.io/2025/08/18/[%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F]day1%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/",
+  "image": "https://xmlcrp.github.io/img/butterfly-icon.png",
+  "datePublished": "2025-08-18T02:00:00.000Z",
+  "dateModified": "2025-08-20T12:34:14.852Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Jessee Mecry",
+      "url": "https://xmlcrp.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/blog-with-hexo/img/favicon.png"><link rel="canonical" href="https://xmlcrp.github.io/2025/08/18/[%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F]day1%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog-with-hexo/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/blog-with-hexo/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '单例模式',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/blog-with-hexo/atom.xml" title="我的技术博客" type="application/atom+xml">
+</head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/blog-with-hexo/"><span class="site-name">我的技术博客</span></a><a class="nav-page-title" href="/blog-with-hexo/"><span class="site-name">单例模式</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">单例模式</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-08-18T02:00:00.000Z" title="发表于 2025-08-18 10:00:00">2025-08-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-20T12:34:14.852Z" title="更新于 2025-08-20 20:34:14">2025-08-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blog-with-hexo/categories/%E4%B8%8A%E4%BD%8D%E6%9C%BA/">上位机</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Day1-单例模式"><a href="#Day1-单例模式" class="headerlink" title="Day1 单例模式"></a>Day1 单例模式</h1><h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h2><p>本章学习一下C#的常见的设计模式，用于提升代码的框架设计能力。</p>
+<h2 id="1-设计模式"><a href="#1-设计模式" class="headerlink" title="1.设计模式"></a>1.设计模式</h2><p>GoF 设计模式中包含了：创建型，结构型和行为型三种设计模式。<br>GoF 设计模式是由四位计算机科学家提出的23种设计模式，因此被称为“四人帮”（Gang of Four，简称GoF）。</p>
+<p>创建型包含了：单例模式（Singleton），简单工厂模式（Simple Factory），工厂方法模式（Factory Method），<br>抽象工厂模式（Abstract Factory），建造者模式（Builder），原型模式（Prototype）</p>
+<h2 id="2-单例设计模式"><a href="#2-单例设计模式" class="headerlink" title="2.单例设计模式"></a>2.单例设计模式</h2><p>单例设计模式只允许全局访问类的一个实例。当系统的所有操作只能有一个对象进行协调时，就应当使用单例设计模式。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PlcManager</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 线程安全的单例实现</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> PlcManager _instance = <span class="keyword">new</span> PlcManager();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// PLC连接实例</span></span><br><span class="line">    <span class="keyword">private</span> SiemensPlc _plcConnection;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数私有化，防止外部通过 new 创建实例</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">PlcManager</span>()</span> </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 初始化 PLC 连接</span></span><br><span class="line">        _plcConnection = <span class="keyword">new</span> SiemensPlc(<span class="string">&quot;192.168.0.1&quot;</span>, <span class="number">102</span>); <span class="comment">// 假设 IP 和端口</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 提供全局访问点</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> PlcManager Instance =&gt; _instance;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// PLC 操作接口</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">WriteData</span>(<span class="params"><span class="built_in">int</span> address, <span class="built_in">byte</span>[] data</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 使用PLC连接执行写操作</span></span><br><span class="line">        _plcConnection.Write(address, data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">byte</span>[] <span class="title">ReadData</span>(<span class="params"><span class="built_in">int</span> address</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 使用PLC连接执行读操作</span></span><br><span class="line">        <span class="keyword">return</span> _plcConnection.Read(address);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 其他PLC操作...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>单例设计模式的核心语句是下面这句代码,我们逐句分析下代码中的内容。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> PlcManager _instance = <span class="keyword">new</span> PlcManager();</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>首先private 表示生成的实例 _instance是 一个私有的仅供类内部使用的变量。<br>这里 <em>instance 是一个惯例写法，instance 是实例的意思，</em> 前缀通常表示这是一个私有字段。</li>
+</ol>
+<p>static表示_instance变量属于类本身，而不是某一个实例，也就是说如果存在多个实例，公用一个 _instance 变量，当然这里是单例模式，不存在多个实例的情况。</p>
+<p>readonly表示_instance只能在类声明的时候或者构造的时候被赋值，后续不可更改。保证了 _instance 的唯一性。</p>
+<p>new PlcManager() 表示创建了一个新的 PlcManager 类，由于_instance是私有的，所以只能在类内部被使用。确保了安全性。</p>
+<p>这个初始化是在类加载时自动完成的，也就是说，_instance 会在应用程序的第一次访问 PlcManager 类时就被创建（实际上是在程序启动时就创建）。</p>
+<p>这行代码实现了单例模式的核心部分：在程序启动的时候创建了唯一的 PlcManager 实例。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 提供全局访问点</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> PlcManager Instance =&gt; _instance;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>接下来看这句，这句的作用是给外部提供一个开放的访问点。这句的核心是 &#x3D;&gt; 这是一个表达式体属性，作用等价于传统的属性定义：<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> PlcManager Instance</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">get</span> &#123; <span class="keyword">return</span> _instance; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="3-单例设计模式模板"><a href="#3-单例设计模式模板" class="headerlink" title="3.单例设计模式模板"></a>3.单例设计模式模板</h2><p>最后附上一个单例模式的设计模板，方便以后代码编写。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">Temperature</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> Temperature _instance = <span class="keyword">new</span> Temperature();</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Temperature Instance =&gt; _instance;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Temperature</span>() <span class="comment">// 私有构造函数，防止外部 new</span></span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 初始化硬件连接</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">double</span> <span class="title">GetTemperature</span>(<span class="params"><span class="built_in">string</span> cmd</span>)</span> &#123; ... &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">double</span> <span class="title">GetHumidity</span>(<span class="params"><span class="built_in">string</span> cmd</span>)</span> &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里不提供任何能 new、能改硬件底层对象的接口</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://xmlcrp.github.io">Jessee Mecry</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://xmlcrp.github.io/2025/08/18/[%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F]day1%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">https://xmlcrp.github.io/2025/08/18/[%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F]day1%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://xmlcrp.github.io" target="_blank">我的技术博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog-with-hexo/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><a class="post-meta__tags" href="/blog-with-hexo/tags/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">单例模式</a></div><div class="post-share"><div class="social-share" data-image="/blog-with-hexo/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/blog-with-hexo/2025/07/23/CAN%E6%80%BB%E7%BA%BF%E5%AD%A6%E4%B9%A0/" title="CAN总线学习"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">CAN总线学习</div></div><div class="info-2"><div class="info-item-1"> CAN总线接线方式在CAN总线的两个最远端的CAN-H,CAN-L之间，分别接入120 ohm的电阻。CAN 总线是一种差分信号传输系统（CAN_H 与 CAN_L 两根线）。差分信号需要通过两根导线之间的特性阻抗（通常为 120Ω）来传输，如果不匹配，信号在传输到总线末端后会被反射回来，引发干扰和通信错误。  </div></div></div></a><a class="pagination-related" href="/blog-with-hexo/2025/08/19/%5B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%5Dday2%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" title="工厂方法模式"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">工厂方法模式</div></div><div class="info-2"><div class="info-item-1">Day2 实现工厂方法模式0.前言前一章学习了单例模式，本章开始学习工厂模式。实际应用里，不同的PLC程序，不同的温度传感器程序，都可以各自集成到一起，对外采用统一接口。这时候就可以采用工厂模型设计。当新增加了一种产品，比如新的PLC品牌，对于上层业务 (Business Layer)来说，逻辑代码是不需要改变的，只需要修改抽象层的代码即可。 1.工厂方法模式123456789101112131415161718192021222324252627282930313233343536373839404142434445classDiagram    direction LR    class IPlc &#123;        &lt;&lt;interface&gt;&gt;        +Connect(ip: string, port: int) bool        +Write(address: string, value: int) void        +Read(address: string) int    &#125;    class...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/blog-with-hexo/2025/08/19/%5B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%5Dday2%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" title="工厂方法模式"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-19</div><div class="info-item-2">工厂方法模式</div></div><div class="info-2"><div class="info-item-1">Day2 实现工厂方法模式0.前言前一章学习了单例模式，本章开始学习工厂模式。实际应用里，不同的PLC程序，不同的温度传感器程序，都可以各自集成到一起，对外采用统一接口。这时候就可以采用工厂模型设计。当新增加了一种产品，比如新的PLC品牌，对于上层业务 (Business Layer)来说，逻辑代码是不需要改变的，只需要修改抽象层的代码即可。 1.工厂方法模式123456789101112131415161718192021222324252627282930313233343536373839404142434445classDiagram    direction LR    class IPlc &#123;        &lt;&lt;interface&gt;&gt;        +Connect(ip: string, port: int) bool        +Write(address: string, value: int) void        +Read(address: string) int    &#125;    class...</div></div></div></a><a class="pagination-related" href="/blog-with-hexo/2025/08/20/%5B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%5Dday3%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" title="适配器模式"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-20</div><div class="info-item-2">适配器模式</div></div><div class="info-2"><div class="info-item-1">day3 适配器模式0.前言前一章学习了工厂模式模式，本章开始学习适配器模式。 1.结构型设计模式结构型适配器包含：1.适配器模式; 2.桥接模式; 3.组合模式; 4.装饰器模式; 5.外观模式; 6.享元模式; 7.代理模式。 本节学习的适配器模式属于结构型设计模式的一种。 2.适配器模式概念适配器模式的概念（简明版）  意图：将一个类的接口，转换成调用方期望的另一种接口。  解决问题：当现有类的接口不符合上层需要时，用适配器做一个“中间层”。   关键角色：  目标接口 (Target)：上层期望的接口，比如 IPlc.Connect()。  适配器 (Adapter)：实现 IPlc 接口，把调用转发到底层 SDK。  被适配者 (Adaptee)：底层...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/blog-with-hexo/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/blog-with-hexo/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Jessee Mecry</div><div class="author-info-description"></div><div class="site-data"><a href="/blog-with-hexo/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/blog-with-hexo/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/blog-with-hexo/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Day1-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">Day1 单例模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">0.前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">1.设计模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text">2.单例设计模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A8%A1%E6%9D%BF"><span class="toc-number">1.4.</span> <span class="toc-text">3.单例设计模式模板</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog-with-hexo/2025/08/20/%5B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%5Dday3%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" title="适配器模式">适配器模式</a><time datetime="2025-08-20T04:00:00.000Z" title="发表于 2025-08-20 12:00:00">2025-08-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog-with-hexo/2025/08/19/%5B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%5Dday2%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" title="工厂方法模式">工厂方法模式</a><time datetime="2025-08-19T04:00:00.000Z" title="发表于 2025-08-19 12:00:00">2025-08-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog-with-hexo/2025/08/18/%5B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%5Dday1%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" title="单例模式">单例模式</a><time datetime="2025-08-18T02:00:00.000Z" title="发表于 2025-08-18 10:00:00">2025-08-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog-with-hexo/2025/07/23/CAN%E6%80%BB%E7%BA%BF%E5%AD%A6%E4%B9%A0/" title="CAN总线学习">CAN总线学习</a><time datetime="2025-07-23T07:00:00.000Z" title="发表于 2025-07-23 15:00:00">2025-07-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog-with-hexo/2025/07/09/%5B%E8%BF%90%E5%8A%A8%E6%8E%A7%E5%88%B6%5Dday7%E4%B8%BB%E7%AA%97%E4%BD%93%E5%AE%9A%E9%95%BF%E8%BF%90%E5%8A%A8%E5%AE%9E%E7%8E%B0/" title="三轴自动搬运加工机械手项目实战开发-day7.主窗体定长运动实现">三轴自动搬运加工机械手项目实战开发-day7.主窗体定长运动实现</a><time datetime="2025-07-09T08:00:00.000Z" title="发表于 2025-07-09 16:00:00">2025-07-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Jessee Mecry</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/blog-with-hexo/js/utils.js"></script><script src="/blog-with-hexo/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
